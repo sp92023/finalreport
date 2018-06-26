@@ -1,0 +1,47 @@
+<div class="dialog-main">
+  <div class="dialog-top">
+    <h3  class="text-muted">{{ title }}</h3>
+  </div>
+  <div *ngIf="action == 'edit'; else deleteTemplate;">
+    <div class="edit-dialog-center">
+      <form>
+        <div class="form-group">
+          <label for="inputSeverityEnglishName">English Name</label>
+          <input type="text" class="form-control" name="inputSeverityEnglishName" id="inputSeverityEnglishName" placeholder="Enter english name" [(ngModel)]="severity.severity_english_name">
+        </div>
+        <div class="form-group">
+          <label for="inputSeverityChineseName">Chinese Name</label>
+          <input type="text" class="form-control" name="inputSeverityChineseName" id="inputSeverityChineseName" placeholder="Enter chinese name" [(ngModel)]="severity.severity_chinese_name">
+        </div>
+      </form>
+    </div>
+    <div class="dialog-bottom d-flex">
+      <button type="button" class="btn btn-info mr-2 ml-auto" (click)="save()">
+        <i class="fas fa-check mr-2"></i>Save
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        <i class="fas fa-times mr-2"></i>Cancel
+      </button>
+    </div>
+  </div>
+  <ng-template #deleteTemplate>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 align-self-center d-flex my-1">
+          <h1 class="mx-auto text-info"><i class="fas fa-exclamation-triangle"></i></h1>
+        </div>
+        <div class="col-12 align-self-center d-flex my-1">
+          <h3 class="mx-auto">是否確定刪除 {{severity.severity_chinese_name}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-bottom d-flex">
+      <button type="button" class="btn btn-info mr-2 ml-auto" (click)="save()">
+        <i class="fas fa-check mr-2"></i>Yes
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancel()">
+        <i class="fas fa-times mr-2"></i>Cancel
+      </button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #303F9F;">
+  <span class="navbar-brand mb-0 h1">QAS 2</span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" *ngIf="functionLists != undefined">
+      <ng-container *ngFor="let functions of functionLists; let i of index;">
+        <button *ngIf="functions.router != ''; else matMenuTriggerFor" mat-button (click)="goRouterNavigate(functions.router)">{{functions.description}}</button>
+        <ng-template #matMenuTriggerFor>
+          <button mat-button [matMenuTriggerFor]="menu">{{functions.description}}</button>
+          <!--menu-->
+          <mat-menu #menu="matMenu">
+            <ng-container *ngFor="let subFunction of functions.functions">
+              <button *ngIf="subFunction.router != ''; else matMenuTriggerFor" mat-menu-item (click)="goRouterNavigate(subFunction.router)">{{subFunction.description}}</button>
+              <ng-template #matMenuTriggerFor>
+                <button mat-menu-item [matMenuTriggerFor]="subMenu">{{subFunction.description}}</button>
+                <!--sub menu-->
+                <mat-menu  #subMenu="matMenu">
+                  <ng-container *ngFor="let subSubFunction of subFunction.functions">
+                    <button mat-menu-item (click)="goRouterNavigate(subSubFunction.router)">{{subSubFunction.description}}</button>
+                  </ng-container>
+                </mat-menu>
+                <!--sub menu-->
+              </ng-template>
+            </ng-container>
+          </mat-menu>
+          <!--menu-->
+        </ng-template>
+      </ng-container>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="search" placeholder="Search asset" aria-label="Search" [(ngModel)]="searchValue">
+        <button class="btn btn-outline-light my-2 my-sm-0" (click)="goRouterNavigate('test-unit/search-device/' + searchValue)">Search</button>
+      </form>
+    </ul>
+    <ul class="navbar-nav" *ngIf="loggedIn;">
+      <!--<img src="{{ socialUser.photoUrl }}" class="rounded-circle" style="width: 40px; height: 40px">-->
+      <span class="navbar-text"  *ngIf="userModel != null;">
+          Hi {{userModel.username}}
+      </span>
+      <button mat-button (click)="signOut()"><i class="fas fa-sign-out-alt"></i>Sign Out</button>
+    </ul>
+  </div>
+</nav>
+
+<!--<mat-menu #test_unit="matMenu">-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('test-unit/search-device')">Search</button>-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('test-unit/add-device')">Add</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #test_project="matMenu">-->
+  <!--<button mat-menu-item [matMenuTriggerFor]="mmh">Mackay Memorial Hospital</button>-->
+  <!--<button mat-menu-item [matMenuTriggerFor]="wfh">Wanfang Hospital</button>-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('test-project/project-controller')">Global Control</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #mmh="matMenu">-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('test-project/mmh/dashboard')">Dashboard</button>-->
+  <!--<button mat-menu-item>Tools</button>-->
+  <!--<button mat-menu-item>Control</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #wfh="matMenu">-->
+  <!--<button mat-menu-item>Dashboard</button>-->
+  <!--<button mat-menu-item>Tools</button>-->
+  <!--<button mat-menu-item>Control</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #tools="matMenu">-->
+  <!--<button mat-menu-item>Tools</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #booking_room="matMenu">-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('booking-room')">Booking Room</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #clock_in_out="matMenu">-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('clock-in')">Clock In / Out</button>-->
+<!--</mat-menu>-->
+
+<!--<mat-menu #admin="matMenu">-->
+  <!--<button mat-menu-item (click)="goRouterNavigate('admin/clock-list')">Clock List</button>-->
+  <!--<button mat-menu-item>Page control</button>-->
+  <!--<button mat-menu-item>User / Group</button>-->
+  <!--<button mat-menu-item>Announcement</button>-->
+  <!--<button mat-menu-item>Update</button>-->
+  <!--<button mat-menu-item>Log System</button>-->
+  <!--<button mat-menu-item>Job Management</button>-->
+<!--</mat-menu>-->

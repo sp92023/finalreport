@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Test Unit</li>
+          <li class="breadcrumb-item active" aria-current="page">Add</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 layout-margin">
+      <mat-card>
+        <label>Select the type : </label>
+        <mat-form-field>
+          <mat-select [(ngModel)]="typeValue">
+            <mat-option *ngFor="let type of types" [value]="type">
+              {{ type.type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="filter-margin" (click)="changeType()"><i class="fas fa-arrow-alt-circle-down" aria-hidden="true"></i>Submit</button>
+      </mat-card>
+    </div>
+    <div class="col-12 layout-margin" *ngIf="assetModify.length > 0">
+      <mat-card>
+        <mat-form-field *ngFor="let asset of assetModify">
+          <mat-select class="input-value" placeholder={{asset.column}} name={{asset.column}} *ngIf="checkAssetColumnSelection(asset); else inputsection;" [(ngModel)]="asset.value">
+            <mat-option *ngFor="let option of asset.option" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+          <ng-template #inputsection>
+            <input class="input-value" matInput placeholder={{asset.column}} name={{asset.column}} *ngIf="checkAssetColumnReadOnly(asset); else readonlysection;" [(ngModel)]="asset.value" readonly>
+            <ng-template #readonlysection>
+              <input class="input-value" matInput placeholder={{asset.column}} name={{asset.column}} [(ngModel)]="asset.value">
+            </ng-template>
+          </ng-template>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="filter-margin" (click)="save()" style="width: 100%;"><i class="fas fa-check" aria-hidden="true"></i>Save</button>
+      </mat-card>
+    </div>
+  </div>
+</div>

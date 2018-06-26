@@ -1,0 +1,44 @@
+.table-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.table-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.filter-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.filter-margin {
+  margin-left: 10px;
+}
+
+.layout-margin {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px){
+  .mat-table {
+    width: 720px;
+  }
+  .table-container {
+    overflow-x: auto;
+  }
+}

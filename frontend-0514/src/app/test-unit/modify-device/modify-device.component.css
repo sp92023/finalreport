@@ -1,0 +1,28 @@
+.mat-card {
+  margin-bottom: 10px;
+}
+
+.input-value {
+  font-weight: bold;
+}
+
+.mat-raised-button {
+  width: 100%;
+}
+
+@media (max-width: 767px){
+  .mat-form-field {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px){
+  .mat-form-field {
+    width: 27%;
+    margin-right: 6%
+  }
+}
+
+.margin {
+  margin: 0 10px;
+}

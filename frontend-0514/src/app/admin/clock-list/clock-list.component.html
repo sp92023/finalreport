@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Admin</li>
+          <li class="breadcrumb-item active" aria-current="page">Clock List</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-tab-group class="demo-tab-group">
+        <mat-tab label={{clockRecord[0].user_id}} *ngFor="let clockRecord of clockRecords;">
+          <div>
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">ID</th>
+                <th scope="col">Time</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Get data from the database -->
+              <tr *ngFor="let c of clockRecord; let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{c.user_id}}</td>
+                <td>{{c.clock_time}}</td>
+              </tr>
+              <!-- Get data from the database -->
+              </tbody>
+            </table>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

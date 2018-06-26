@@ -1,0 +1,21 @@
+.layout-margin {
+  margin-bottom: 10px;
+}
+
+.input-value {
+  font-weight: bold;
+}
+
+
+@media (max-width: 767px){
+  .mat-form-field {
+    width: 90%;
+  }
+}
+
+@media (min-width: 768px){
+  .mat-form-field {
+    width: 27%;
+    margin-right: 6%
+  }
+}

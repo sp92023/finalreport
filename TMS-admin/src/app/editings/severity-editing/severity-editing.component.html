@@ -1,0 +1,44 @@
+<div class="container-fluid my-2">
+  <div class="row justify-content-between my-2">
+    <div class="col-lg-4">
+      <h2 class="text-muted">嚴重程度 Severity</h2>
+    </div>
+    <div class="col-lg-4">
+      <form class="form-inline">
+        <select class="form-control w-50 mr-2 ml-lg-auto my-2">
+          <option *ngFor="let hospital of hospitals;">{{hospital}}</option>
+        </select>
+        <button type="submit" class="btn btn-outline-info btn-submit mr-3 my-2" type="submit"><i class="fas fa-check mr-2"></i>Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table datatable class="table table-hover table-bordered table-responsive-lg">
+        <thead>
+        <tr class="table-info">
+          <th>ID</th>
+          <th>English Name</th>
+          <th>Chinese Name</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Data</td>
+          <td>Data</td>
+          <td>Data</td>
+          <td>
+            <button class="btn btn-outline-info mx-1 my-1 " type="button" (click)="editData(severity)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="btn btn-outline-info mx-1 my-1 " type="button" (click)="deleteData(severity)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

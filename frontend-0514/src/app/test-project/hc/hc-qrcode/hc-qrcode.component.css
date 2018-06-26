@@ -1,0 +1,48 @@
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-expansion-panel-body {
+  padding-bottom: 0px;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.textarea-color-and-height {
+  background-color: #f9f9f9;
+  height: 250px;
+}
+
+.main-button {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.layout-margin {
+  margin-bottom: 10px;
+}
+
+.mat-form-field {
+  margin-top: -10px;
+  height: 30px;
+}
+
+.th-font {
+  font-size: 14px;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}

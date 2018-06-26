@@ -1,0 +1,40 @@
+.img-size {
+  width: 34px;
+  height: 34px;
+}
+
+.account-menu-button-size {
+  height: 48px;
+}
+
+.logo-size {
+  height: 38px;
+}
+
+@media (max-width: 991px) {
+  .dropdown-menu-position {
+    left: 0;
+    right: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .dropdown-menu-position {
+    left: auto;
+    right: 0;
+  }
+}
+
+.additional-selection {
+  opacity: 0.75;
+  font-size: 0.75em;
+}
+
+.selection-field {
+  height: 48px;
+  width: 175px;
+}
+
+.navbar-light {
+  background-color: #eef7f9;
+}

@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Test Unit</li>
+          <li class="breadcrumb-item active" aria-current="page">Modify</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 layout-margin">
+      <mat-card>
+        <mat-form-field *ngFor="let asset of assetModify">
+          <mat-select class="input-value" placeholder={{asset.column}} name={{asset.column}} *ngIf="checkAssetColumnSelection(asset); else inputsection;" [(ngModel)]="asset.value">
+            <mat-option *ngFor="let option of asset.option" [value]="option">
+              {{ option }}
+            </mat-option>
+          </mat-select>
+          <ng-template #inputsection>
+            <input class="input-value" matInput placeholder={{asset.column}} name={{asset.column}} *ngIf="checkAssetColumnReadOnly(asset); else readonlysection;" [(ngModel)]="asset.value" readonly>
+            <ng-template #readonlysection>
+              <input class="input-value" matInput placeholder={{asset.column}} name={{asset.column}} [(ngModel)]="asset.value">
+            </ng-template>
+          </ng-template>
+        </mat-form-field>
+        <div class="row">
+          <div class="col-6">
+            <button mat-raised-button color="warn" class="filter-margin" (click)="transfer()" ><i class="fas fa-exchange-alt" aria-hidden="true"></i>Transfer</button>
+          </div>
+          <div class="col-6">
+            <button mat-raised-button color="primary" class="filter-margin" (click)="save()" ><i class="fas fa-check" aria-hidden="true"></i>Save</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

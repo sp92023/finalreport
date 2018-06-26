@@ -1,0 +1,124 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Booking Room</li>
+        </ol>
+      </nav>
+    </div>
+    <div #exampleModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel" [innerHTML]="errorTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" [innerHTML]="errorContent">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="errorMethod()">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="scheduler_here" class="dhx_cal_container"></div>
+    <div class="col-md-4" style="margin-bottom: 15px">
+      <div id="cal_here" style='width:320px; height: 250px;  margin-left: auto; margin-right: auto;'></div>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Room Description
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <button mat-raised-button color="primary" data-toggle="modal" data-target="#imgModal" style="width: 100%; margin-bottom: 10px;">
+            <i class="fas fa-search" aria-hidden="true"></i>Location Map
+          </button>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">Room</th>
+              <th scope="col">People</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">D01：大會議室</th>
+              <td>8~14</td>
+            </tr>
+            <tr>
+              <th scope="row">D02：中會議室</th>
+              <td>6~8</td>
+            </tr>
+            <tr>
+              <th scope="row">D03：中會議室</th>
+              <td>6~8</td>
+            </tr>
+            <tr>
+              <th scope="row">D05：小會議室</th>
+              <td>4~6</td>
+            </tr>
+            <tr>
+              <th scope="row">D06：小會議室</th>
+              <td>4~6</td>
+            </tr>
+            <tr>
+              <th scope="row">Demo Room</th>
+              <td>-</td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-8">
+      <div style='margin-left: auto; margin-right: auto;' >
+        <button
+          *ngFor="let room of b_rooms; let i = index"
+          [ngClass]="( i+1 == curRoomPage ) ? 'btn btn-primary' : 'btn btn-default btn-outline-secondary'"
+          (click)="show_room(i+1)"
+          type="button">
+          {{room}}
+        </button>
+      </div>
+      <div #scheduler_here  class="dhx_cal_container" style="width: 100%; height:100vh">
+        <div class="dhx_cal_navline">
+          <div class="dhx_cal_prev_button">&nbsp;</div>
+          <div class="dhx_cal_next_button">&nbsp;</div>
+          <div class="dhx_cal_today_button"></div>
+          <div class="dhx_cal_date"></div>
+          <div class="dhx_cal_tab" name="day_tab"></div>
+          <div class="dhx_cal_tab" name="week_tab"></div>
+          <div class="dhx_cal_tab" name="month_tab"></div>
+          <div class="dhx_cal_date"></div>
+        </div>
+        <div class="dhx_cal_header"></div>
+        <div class="dhx_cal_data"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="imgModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imgModalLabel">Location Map</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="./assets/meeting_room.png" class="img-fluid" alt="Responsive image">
+      </div>
+    </div>
+  </div>
+</div>

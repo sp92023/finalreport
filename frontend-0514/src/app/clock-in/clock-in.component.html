@@ -1,0 +1,139 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item active" aria-current="page">Clock In / Out</li>
+        </ol>
+      </nav>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        We suggested using Chrome or Firefox to ensure that the clocking-in / clocking-out is correct. The system will only execute under the DeepQ network, please make sure to connect the correct network connection.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 table-responsive" style="margin-bottom: 15px">
+
+      <button mat-raised-button color="primary" (click)="clock()">
+        <i class="far fa-edit fa-lg" aria-hidden="true"></i>
+        Clock Now
+      </button>
+
+      <!--<button mat-raised-button color="primary" (click)="export()">-->
+        <!--<i class="fas fa-print fa-lg" aria-hidden="true"></i>-->
+        <!--Export Excel-->
+      <!--</button>-->
+
+      <table class="table table-hover">
+        <tbody>
+        <tr>
+          <th scope="row">Name</th>
+          <td>{{userModel.username}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{userModel.email}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Description
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">P10</th>
+              <td>上班</td>
+            </tr>
+            <tr>
+              <th scope="row">P20</th>
+              <td>下班</td>
+            </tr>
+            </tbody>
+          </table>
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Reason</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">9001</th>
+              <td>刷卡</td>
+            </tr>
+            <tr>
+              <th scope="row">9002</th>
+              <td>卡片遺失</td>
+            </tr>
+            <tr>
+              <th scope="row">9003</th>
+              <td>新人報到</td>
+            </tr>
+            <tr>
+              <th scope="row">9004</th>
+              <td>忘記帶卡片</td>
+            </tr>
+            <tr>
+              <th scope="row">9005</th>
+              <td>公出</td>
+            </tr>
+            <tr>
+              <th scope="row">9006</th>
+              <td>卡片壞掉</td>
+            </tr>
+            <tr>
+              <th scope="row">9007</th>
+              <td>進改出，出改進</td>
+            </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div class="col-md-8 table-responsive">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <span>Record Table</span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Time</th>
+          </tr>
+          </thead>
+          <tbody>
+            <!-- Get data from the database -->
+            <tr *ngFor="let c of clockRecords | reverse; let i = index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{c.user_id}}</td>
+              <td>{{c.clock_time}}</td>
+            </tr>
+            <!-- Get data from the database -->
+          </tbody>
+        </table>
+    </div>
+  </div>
+</div>
+

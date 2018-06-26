@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Tools</li>
+          <li class="breadcrumb-item active" aria-current="page">Test Coverage</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+        <mat-card class="layout-margin">
+          <section>
+            <label class="margin">API : </label>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Api Start Value" [(ngModel)]="apiStartValue">
+            </mat-form-field>
+            <mat-slider
+              class="example-margin"
+              [max]="apiMax"
+              [min]="apiMin"
+              [step]="step"
+              [thumb-label]="thumbLabel"
+              [(ngModel)]="apiStartValue">
+            </mat-slider>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Api End Value" [(ngModel)]="apiEndValue">
+            </mat-form-field>
+            <mat-slider
+              class="example-margin"
+              [max]="apiMax"
+              [min]="apiMin"
+              [step]="step"
+              [thumb-label]="thumbLabel"
+              [(ngModel)]="apiEndValue">
+            </mat-slider>
+          </section>
+          <section *ngIf="pageItems !== undefined">
+            <label class="margin">Density : </label>
+            <mat-checkbox *ngFor="let item of pageItems" [(ngModel)]="item.choose">{{item.density}}</mat-checkbox>
+          </section>
+          <button mat-raised-button color="primary" class="filter-margin" (click)="createTable()" style="width: 100%"><i class="fas fa-arrow-alt-circle-down" aria-hidden="true"></i>Submit</button>
+      </mat-card>
+      <mat-card class="layout-margin" *ngIf="tableTitle.length > 0">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th scope="col">API</th>
+              <th scope="col" *ngFor="let title of tableTitle">{{title}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let datas of coverageTable">
+              <th scope="row">{{datas['API']}}</th>
+              <td *ngFor="let title of tableTitle">{{datas['Data'][title]}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

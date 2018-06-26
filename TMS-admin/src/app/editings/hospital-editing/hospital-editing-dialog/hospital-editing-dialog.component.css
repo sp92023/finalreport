@@ -1,0 +1,16 @@
+.dialog-main {
+
+}
+
+.dialog-top {
+  height: 48px;
+}
+
+.edit-dialog-center {
+  height: 360px;
+  overflow: auto;
+}
+
+.dialog-bottom {
+  height: 48px;
+}

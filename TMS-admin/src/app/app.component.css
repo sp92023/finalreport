@@ -1,0 +1,41 @@
+.app-tool-bar {
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  box-shadow: 0 2px 3px 0 rgba(0,0,0,.3);
+}
+
+.app-container {
+  position: absolute;
+  padding-top: 64px;
+}
+
+.app-side-nav, .app-side-nav-min {
+  box-shadow: 1px 0 3px 0 rgba(0,0,0,.3);
+}
+
+.app-side-nav {
+  max-width: 210px;
+}
+
+.app-side-nav-min {
+  max-width: 74px;
+}
+
+.app-container, .app-tool-bar  {
+  width: 100%;
+}
+
+.app-main-area {
+  overflow: auto;
+}
+
+/*@media (max-width: 1199px) {*/
+  /*.app-side-nav {*/
+    /*display: none;*/
+  /*}*/
+/*}*/
+
+.container-full-view {
+  height: calc(100vh - 64px);
+}

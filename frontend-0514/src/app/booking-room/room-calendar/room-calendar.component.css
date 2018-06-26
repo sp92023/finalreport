@@ -1,0 +1,69 @@
+@import '../../../../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.css';
+
+:host{
+  display: block;
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.dhx_cal_tab.active {
+  background-color: #007bff;
+  color: #f8f9fa;
+  border: 1px solid #CECECE;
+  text-shadow: 0 0px 0 #fff;
+}
+
+.dhx_scale_holder {
+  background-image: url("../../../assets/booking_databg.png");
+}
+
+.dhx_scale_holder_now {
+  background-image: url("../../../assets/booking_databg_now.png");
+}
+
+.dhx_cal_event_clear{
+  height: 80px;
+  width: 127px;
+  top: 114px;
+  left:0px;
+  position: absolute;
+}
+
+@media (max-width:991px) and (min-width:576px)
+{
+  .date-picker-float
+  {
+    margin-left: auto;
+    margin-top: -1250px;
+    float:right;
+  }
+}
+@media (min-width:992px)
+{
+  .calendar-float
+  {
+    float:right;
+  }
+  .date-picker-float
+  {
+    margin-top: -750px;
+    float:left;
+  }
+}
+
+.btn{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+
+
+.dhx_cal_event.login_user div{
+  background-color: #007bff   !important;
+  color: black !important;
+}
+.dhx_cal_event.not_login_user div{
+  background-color: #e9ecef   !important;
+  color: black !important;
+}

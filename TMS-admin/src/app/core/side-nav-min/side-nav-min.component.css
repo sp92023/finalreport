@@ -1,0 +1,7 @@
+.btn {
+  width: 44px;
+}
+
+.container-full-view {
+  height: calc(100vh - 102px);
+}

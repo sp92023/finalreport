@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" aria-current="page">Admin</li>
+          <li class="breadcrumb-item active" aria-current="page">Log</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-card class="layout-margin">
+        <mat-form-field style="width: 40%">
+          <input matInput placeholder="Keyword" [(ngModel)]="keyword">
+          <mat-hint align="start">The format of date is yyyy/mm/dd.</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="filter-margin" (click)="search()" ><i class="fas fa-search" aria-hidden="true"></i>Search</button>
+
+      </mat-card>
+      <mat-card class="layout-margin">
+        <pre style="background-color: #f7f8fb">{{message}}</pre>
+      </mat-card>
+    </div>
+  </div>
+</div>

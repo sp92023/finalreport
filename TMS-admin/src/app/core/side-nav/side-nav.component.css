@@ -1,0 +1,8 @@
+.btn {
+  width: 180px;
+  text-align: left;
+}
+
+.container-full-view {
+  height: calc(100vh - 102px);
+}

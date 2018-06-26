@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Test Unit</li>
+          <li class="breadcrumb-item active" aria-current="page">Search</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <mat-card class="layout-margin">
+        <mat-form-field style="width: 85%">
+          <input matInput placeholder="Search asset" [(ngModel)]="searchValue">
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="filter-margin" type="submit" (click)="search()">
+          <i class="fas fa-search" aria-hidden="true"></i>Search
+        </button>
+      </mat-card>
+    </div>
+    <div class="col-12 layout-margin">
+      <div class="table-container mat-elevation-z8">
+        <div class="table-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Sub-filter">
+          </mat-form-field>
+        </div>
+        <mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef={{subDisplayedColumn}} *ngFor="let subDisplayedColumn of displayedColumns">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{subDisplayedColumn}} </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <button type="button" class="btn btn-outline-primary btn-sm" *ngIf="subDisplayedColumn == 'asset_id'; else normal_column" (click)="goRouterNavigate(row[subDisplayedColumn])">
+                {{row[subDisplayedColumn]}}
+              </button>
+              <ng-template #normal_column>
+                {{row[subDisplayedColumn]}}
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[10, 25, 100]"></mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

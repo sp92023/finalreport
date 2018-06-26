@@ -1,0 +1,40 @@
+<div class="container-fluid my-2">
+  <div class="row justify-content-between my-2">
+    <div class="col-lg-4">
+      <h2 class="text-muted">醫院 Hospital</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table datatable class="table table-hover table-bordered table-responsive-lg">
+        <thead>
+        <tr class="table-info">
+          <th>#</th>
+          <th>Hospital ID</th>
+          <th>English Name</th>
+          <th>Chinese Name</th>
+          <th>Label Name</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let hospital of hospitals; let i = index">
+          <td>{{ i+1 }}</td>
+          <td>{{ hospital.hospital_id }}</td>
+          <td>{{ hospital.hospital_english_name }}</td>
+          <td>{{ hospital.hospital_chinese_name }}</td>
+          <td>{{ hospital.hospital_label_name }}</td>
+          <td>
+            <button class="btn btn-outline-info mx-1 my-1 " type="button" (click)="openDialog('edit', hospital)">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button class="btn btn-outline-info mx-1 my-1 " type="button" (click)="openDialog('delete', hospital)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

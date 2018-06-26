@@ -1,0 +1,27 @@
+.layout-margin {
+  margin-bottom: 10px;
+}
+
+.mat-slider {
+  margin: 10px;
+  width: 200px;
+}
+
+.section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.mat-form-field {
+  width: 100px;
+}
+
+.margin {
+  margin: 0 10px;
+}
+
+.mat-checkbox {
+  margin-right: 10px;
+}

@@ -1,0 +1,204 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">Test Project</li>
+          <li class="breadcrumb-item">Healthcare</li>
+          <li class="breadcrumb-item active" aria-current="page">QR Code Generator</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="qrcodePageData !== undefined">
+        <mat-accordion class="example-headers-align">
+          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Version
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose the version of medicine storeroom.
+                <mat-icon>assessment</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-12">
+                <table class="table table-hover">
+                  <tr>
+                    <th scope="row" class="th-font">醫院診所服務代碼</th>
+                    <td>
+
+
+
+                      <!--<select class="form-control" [(ngModel)]="qrcodePostData['hospitals']">-->
+                        <!--<option [value]="option['hosp_id']" *ngFor="let option of qrcodePageData['hospitals']">{{option['name']}}</option>-->
+                      <!--</select>-->
+
+
+
+                      <mat-form-field>
+                        <input matInput placeholder="Hospital" aria-label="Hospital" [matAutocomplete]="auto" [formControl]="stateCtrl" [(ngModel)]="qrcodePostData['hospitals']">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let state of filteredStates | async" [value]="state['hosp_id']">
+                            {{state['name']}}
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Detail
+              </mat-panel-title>
+              <mat-panel-description>
+                Choose the detail of prescription and other details.
+                <mat-icon>local_hospital</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="row">
+              <div class="col-lg-4" *ngFor="let data of medicineOption">
+                <table class="table table-hover">
+                  <tr *ngFor="let d of data">
+                    <th scope="row" class="th-font">{{d[0]}}</th>
+                    <td>
+                      <mat-form-field *ngIf="checkDay(d[1]); else selection;">
+                        <input matInput placeholder="Input" [(ngModel)]="qrcodePostData[d[1]]">
+                      </mat-form-field>
+                      <ng-template #selection>
+                        <mat-form-field>
+                          <mat-select placeholder="Select" *ngIf="checkDivision(d[1]); else normalDetailOption;" [(ngModel)]="qrcodePostData[d[1]]">
+                            <mat-option [value]="option" *ngFor="let option of qrcodePageData[d[1]]">{{option['cname']}}</mat-option>
+                          </mat-select>
+                          <ng-template #normalDetailOption>
+                            <mat-select placeholder="Select" [(ngModel)]="qrcodePostData[d[1]]">
+                              <mat-option [value]="option" *ngFor="let option of qrcodePageData[d[1]]">{{option}}</mat-option>
+                            </mat-select>
+                          </ng-template>
+                        </mat-form-field>
+                      </ng-template>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Medicine
+              </mat-panel-title>
+              <mat-panel-description>
+                Add medicine.
+                <mat-icon>content_paste</mat-icon>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <table class="table table-hover" *ngIf="drugPageGetData !== undefined; else loading;">
+              <thead>
+              <tr>
+                <th scope="col" style="width: 20%;">
+                  <button mat-raised-button color="primary" class="filter-margin" (click)="add()" ><i class="fas fa-plus"></i>Add</button>
+                  <button mat-raised-button color="warn" class="filter-margin" (click)="delete()" ><i class="fas fa-minus"></i>Delete</button>
+                </th>
+                <th scope="col" *ngFor="let data of addMedicineTitle">{{data[0]}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let d of drugPostData; let i = index;">
+                <th>{{i+1}}</th>
+                <td>
+                  <select class="form-control myselect" [(ngModel)]="drugPostData[i][addMedicineTitle[0][1]]">
+                    <option *ngFor="let option of medicineCodeList">{{option}}</option>
+                  </select>
+                  <!--<mat-form-field>-->
+                    <!--<mat-select placeholder="Select" [(ngModel)]="drugPostData[i][addMedicineTitle[0][1]]">-->
+                      <!--<mat-option [value]="option" *ngFor="let option of drugPageGetData[addMedicineTitle[0][1]]">{{option}}</mat-option>-->
+                    <!--</mat-select>-->
+                  <!--</mat-form-field>-->
+                </td>
+                <td>
+                  <select class="form-control" [(ngModel)]="drugPostData[i][addMedicineTitle[1][1]]">
+                    <option *ngFor="let option of medicineDosageList">{{option}}</option>
+                  </select>
+                  <!--<mat-form-field>-->
+                    <!--<mat-select placeholder="Select" [(ngModel)]="drugPostData[i][addMedicineTitle[1][1]]">-->
+                      <!--<mat-option [value]="option" *ngFor="let option of drugPageGetData[addMedicineTitle[1][1]]">{{option}}</mat-option>-->
+                    <!--</mat-select>-->
+                  <!--</mat-form-field>-->
+                </td>
+                <td>
+                  <select class="form-control" [(ngModel)]="drugPostData[i][addMedicineTitle[2][1]]">
+                    <option [value]="option['code']" *ngFor="let option of medicineFequencys">{{option['name']}}</option>
+                  </select>
+                  <!--<mat-form-field>-->
+                    <!--<mat-select placeholder="Select" [(ngModel)]="drugPostData[i][addMedicineTitle[2][1]]">-->
+                      <!--<mat-option [value]="option['code']" *ngFor="let option of drugPageGetData[addMedicineTitle[2][1]]">{{option['name']}}</mat-option>-->
+                    <!--</mat-select>-->
+                  <!--</mat-form-field>-->
+                </td>
+                <td>
+                  <select class="form-control" [(ngModel)]="drugPostData[i][addMedicineTitle[3][1]]">
+                    <option [value]="option['WayCode']" *ngFor="let option of medicineMethods">{{option['WayName']}}</option>
+                  </select>
+                  <!--<mat-form-field>-->
+                    <!--<mat-select placeholder="Select" [(ngModel)]="drugPostData[i][addMedicineTitle[3][1]]">-->
+                      <!--<mat-option [value]="option['WayCode']" *ngFor="let option of drugPageGetData[addMedicineTitle[3][1]]">{{option['WayName']}}</mat-option>-->
+                    <!--</mat-select>-->
+                  <!--</mat-form-field>-->
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <ng-template #loading>
+              <mat-spinner style="margin-top: 50px; margin-left: auto; margin-right: auto;"></mat-spinner>
+            </ng-template>
+            <mat-action-row>
+              <button mat-button color="warn" (click)="prevStep()">Previous</button>
+              <button mat-button color="primary" (click)="nextStep()">Next</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <button mat-raised-button color="primary" class="filter-margin main-button" (click)="generate()"><i class="far fa-caret-square-down"></i>Generate QRCode</button>
+      </div>
+      <div *ngIf="generateCheck">
+        <!--<button mat-raised-button color="warn" class="filter-margin main-button" (click)="reset()"><i class="far fa-caret-square-up"></i>Reset</button>-->
+        <mat-card class="layout-margin">
+          <div class="row">
+            <div class="col-4">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{medicineText | formatString: { '&': '%26' } }}" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col-8">
+              <mat-form-field class="example-full-width">
+                <textarea matInput placeholder="" class="textarea-color-and-height">{{medicineText}}</textarea>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card>
+        <div *ngIf="drugDetail.length > 0">
+          <mat-card class="layout-margin" *ngFor="let m of drugDetail">
+            <table class="table table-hover table-sm">
+              <tr *ngFor="let title of medicineDetailTitle">
+                <th>{{title}}</th>
+                <td>{{m[title]}}</td>
+              </tr>
+            </table>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
